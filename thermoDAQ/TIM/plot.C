@@ -9,10 +9,10 @@ struct Measurement {
 Measurement MPC315[] = {
   {  0.0, -0.025, 1, 0.318, 0.204 },
   {  0.0, +0.025, 1, 0.393, 0.170 },
-  {  1.0, -0.050, 1, 0.563, 0.206 },
+  {  1.0, -0.025, 1, 0.563, 0.206 },
   {  1.0,  0.000, 1, 0.457, 0.205 },
-  {  1.0, +0.050, 1, 0.402, 0.216 },
-  {  1.0, +0.025, 2, 0.534, 0.171 },
+  {  1.0, +0.025, 1, 0.402, 0.216 },
+  {  1.0, +0.0125, 2, 0.534, 0.171 },
   {  2.0, -0.025, 1, 0.860, 0.219 },
   {  2.0, +0.025, 2, 0.651, 0.172 },
   {  3.0, -0.025, 1, 0.457, 0.216 },
@@ -30,7 +30,7 @@ Measurement T725[] = {
   {  1.0, -0.025, 2, 3.212, 0.189 },
   {  2.0, -0.025, 1, 2.496, 0.232 },
   {  2.0, +0.025, 2, 2.821, 0.186 },
-  {  3.0, -0.025, 1, 2.212, 0.230 },
+  {  3.0, -0.000, 1, 2.212, 0.230 },
   {  3.0, -0.025, 2, 2.434, 0.184 },
   {  3.0, +0.025, 2, 2.326, 0.183 },
   {  0.0,  0.000, 0, 0.560, 0.217 },
@@ -45,6 +45,7 @@ Measurement T777[] = {
   {  2.0, -0.025, 1, 2.789, 0.235 },
   {  3.0, -0.025, 1, 2.709, 0.234 },
   {  0.0,  0.000, 0, 0.673, 0.172 },
+  {  0.0, -0.125, 0, 0.771, 0.173 },
   { -1.0,  0, 0, 0, 0 }
 };
 
@@ -69,10 +70,10 @@ void plot()
   
   int sample0marker = 20;
   float sample0markersize = 1.2;
-  int sample1marker = 25;
+  int sample1marker = 21;
   float sample1markersize = 1.0;
-  int sample2marker = 4;
-  float sample2markersize = 1.2;
+  int sample2marker = 20;
+  float sample2markersize = 1.0;
   int i;
   
   TGraphErrors * grMPC315_0 = new TGraphErrors();
@@ -289,19 +290,19 @@ void plot()
   
   grT725_1->Draw("P");
   grT725_2->Draw("P");
-  
+
   grT777_1->Draw("P");
   grT777_2->Draw("P");
 
-  /*
     grT557_1->Draw("P");
     grT557_2->Draw("P");
+  /*
   */
   
-  return;
+  //return;
 
-  int specMarkerStyle = 21;
-  float specMarkerSize = 1.0;
+  int specMarkerStyle = 4;
+  float specMarkerSize = 1.2;
   TGraph * grMPC315specs = new TGraph();
   grMPC315specs->SetMarkerSize(specMarkerSize);
   grMPC315specs->SetMarkerStyle(specMarkerStyle);
