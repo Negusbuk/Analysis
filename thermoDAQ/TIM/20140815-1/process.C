@@ -13,5 +13,7 @@ void process()
   //T->Process("Calibration.C+", "29200 29600");
   //T->Process("CalTempVsTime.C+");
   
-  T->Process("Analysis.C+", "15 7 0 21100 21500");
+  //T->Process("Analysis.C+", "15 7 0 12700 12900");
+  T->Process("Analysis.C+", "15 7 0 17200 17400");
+  //T->Process("Analysis.C+", "15 7 0 21400 21600");
 }
