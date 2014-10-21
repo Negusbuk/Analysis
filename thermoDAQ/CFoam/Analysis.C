@@ -36,7 +36,7 @@
 #include <TF1.h>
 #include <TLatex.h>
 
-Double_t myfunction(Double_t *x, Double_t *par)
+Double_t myfunction1(Double_t *x, Double_t *par)
 {
   double xx =x[0];
   double p0 = par[0];
@@ -48,12 +48,31 @@ Double_t myfunction(Double_t *x, Double_t *par)
   if (xx<=p3) {
     f = p0 + p1*xx;
   } else {
-    f = p0 + p1*xx + p2;
+    f = p0 + p2 + p1*xx;
   }
   
   return f;
 }
-   
+
+Double_t myfunction2(Double_t *x, Double_t *par)
+{
+  double xx =x[0];
+  double p0 = par[0];
+  double p1 = par[1];
+  double p2 = par[2];
+  double p3 = par[3];
+  double p4 = par[4];
+  
+  double f = 0;
+  if (xx<=p3) {
+    f = p0 + p1*xx;
+  } else {
+    f = p0 + p2 + p4*xx;
+  }
+  
+  return f;
+}
+ 
 CalibrationSet::CalibrationSet()
 {
   minTime_ = 0;
@@ -252,16 +271,16 @@ void Analysis::Terminate()
   int bit = 1;
   for (int i=1;i<=4;++i) {
     if (fitTop_&bit) {
-      pushPoint(grTop, positionTop[i], dataTop[i], 0.5, 0.025);
-      pushPoint(grCombined, positionTop[i], dataTop[i], 0.5, 0.025);
+      pushPoint(grTop, positionTop[i], dataTop[i], ErrorPos, ErrorT);
+      pushPoint(grCombined, positionTop[i], dataTop[i], ErrorPos, ErrorT);
     }
     bit <<= 1;
   }
   bit = 1;
   for (int i=1;i<=4;++i) {
     if (fitBottom_&bit) {
-      pushPoint(grBottom, positionBottom[i], dataBottom[i], 0.5, 0.025);
-      pushPoint(grCombined, positionBottom[i], dataBottom[i], 0.5, 0.025);
+      pushPoint(grBottom, positionBottom[i], dataBottom[i], ErrorPos, ErrorT);
+      pushPoint(grCombined, positionBottom[i], dataBottom[i], ErrorPos, ErrorT);
     }
     bit <<= 1;
   }
@@ -297,11 +316,12 @@ void Analysis::Terminate()
   fitBottom->Draw("same");
   std::cout << fitBottom->GetParameter(1) << std::endl;
   
-  TF1 * fitCombined = new TF1("fitCombined", myfunction, 0.0, positionTop[4]+8.0, 4);
+  TF1 * fitCombined = new TF1("fitCombined", myfunction1, 0.0, positionTop[4]+8.0, 4);
+  //TF1 * fitCombined = new TF1("fitCombined", myfunction2, 0.0, positionTop[4]+8.0, 5);
   fitCombined->FixParameter(3, positionBottomFace);
   grCombined->Fit(fitCombined, "NR");
   
-  //fitCombined->Draw("same");
+  fitCombined->Draw("same");
   
   Float_t TTopFace = fitTop->Eval(positionTopFace);
   Float_t dTTopFace = positionTopFace * fitTop->GetParError(1) + fitTop->GetParError(0);
