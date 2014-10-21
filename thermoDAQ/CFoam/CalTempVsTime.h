@@ -159,6 +159,8 @@ public :
   TGraph* grTTop[5];
   TGraph* grTBottom[5];
   
+  TGraph* grDelta;
+
   UInt_t minUTime;
   UInt_t maxUTime;
 

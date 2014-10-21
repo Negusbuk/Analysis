@@ -98,6 +98,12 @@ void CalTempVsTime::Begin(TTree * /*tree*/)
     grTBottom[i]->SetTitle(Form("bottom_%d", i));
   }
   
+  grDelta = new TGraph();
+  grDelta->SetLineColor(2);
+  grDelta->SetLineWidth(2);
+  grDelta->SetName("delta");
+  grDelta->SetTitle("Delta Top - Bottom");
+
   std::ifstream ifile("calibration.txt");
   int calcount;
   ifile >> calcount;
@@ -198,6 +204,8 @@ Bool_t CalTempVsTime::Process(Long64_t entry)
   pushPoint(grTBottom[3], uTime, TBottom3);
   pushPoint(grTBottom[4], uTime, TBottom4);
   
+  pushPoint(grDelta, uTime, TTop4 - TBottom4);
+
   return kTRUE;
 }
 
@@ -235,6 +243,8 @@ void CalTempVsTime::Terminate()
   grTBottom[2]->Draw("L");
   grTBottom[3]->Draw("L");
   grTBottom[4]->Draw("L");
+
+  grDelta->Draw("L");
 
   c->Print("CalTempVsTime.png");
 }
