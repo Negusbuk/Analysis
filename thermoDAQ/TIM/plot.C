@@ -99,6 +99,7 @@ void plot()
   grMPC315_1->SetMarkerStyle(sample1marker);
   grMPC315_1->SetMarkerColor(MPC315color);
   grMPC315_1->SetLineColor(MPC315color);
+  grMPC315_1->SetFillColor(MPC315color);
   TGraphErrors * grMPC315_10 = new TGraphErrors();
   int nMPC315_10 = 0;
   grMPC315_10->SetMarkerSize(sample1markersize);
@@ -149,6 +150,7 @@ void plot()
   grT725_1->SetMarkerStyle(sample1marker);
   grT725_1->SetMarkerColor(T725color);
   grT725_1->SetLineColor(T725color);
+  grT725_1->SetFillColor(T725color);
   TGraphErrors * grT725_10 = new TGraphErrors();
   int nT725_10 = 0;
   grT725_10->SetMarkerSize(sample1markersize);
@@ -199,6 +201,7 @@ void plot()
   grT777_1->SetMarkerStyle(sample1marker);
   grT777_1->SetMarkerColor(T777color);
   grT777_1->SetLineColor(T777color);
+  grT777_1->SetFillColor(T777color);
   TGraphErrors * grT777_10 = new TGraphErrors();
   int nT777_10 = 0;
   grT777_10->SetMarkerSize(sample1markersize);
@@ -249,6 +252,7 @@ void plot()
   grT557_1->SetMarkerStyle(sample1marker);
   grT557_1->SetMarkerColor(T557color);
   grT557_1->SetLineColor(T557color);
+  grT557_1->SetFillColor(T557color);
   TGraphErrors * grT557_10 = new TGraphErrors();
   int nT557_10 = 0;
   grT557_10->SetMarkerSize(sample1markersize);
@@ -290,25 +294,76 @@ void plot()
   TCanvas * c= new TCanvas("c", "c", 700, 500);
   c->SetGridx(false);
   c->SetGridy(true);
+
+  c->Clear();
   TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
   frame->GetYaxis()->SetTitle("thermal impedance [K cm^2/W]");
-  
   grMPC315_1->Draw("P");
   grMPC315_2->Draw("P");
-  
+  TLatex * latex = new TLatex(-0.25, 3.60, "MPC315");
+  latex->Draw();
+  c->Print("RvsDose_MPC325.pdf");
+
+  c->Clear();
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  frame->GetXaxis()->SetNdivisions(505);
+  frame->GetXaxis()->SetTickLength(0);
+  frame->GetXaxis()->SetTitle("irradiation [MGy]");
+  frame->GetYaxis()->SetTitle("thermal impedance [K cm^2/W]");
   grT725_1->Draw("P");
   grT725_2->Draw("P");
+  TLatex * latex = new TLatex(-0.25, 3.60, "T725");
+  latex->Draw();
+  c->Print("RvsDose_T725.pdf");
 
+  c->Clear();
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  frame->GetXaxis()->SetNdivisions(505);
+  frame->GetXaxis()->SetTickLength(0);
+  frame->GetXaxis()->SetTitle("irradiation [MGy]");
+  frame->GetYaxis()->SetTitle("thermal impedance [K cm^2/W]");
   grT777_1->Draw("P");
   grT777_2->Draw("P");
+  TLatex * latex = new TLatex(-0.25, 3.60, "T777");
+  latex->Draw();
+  c->Print("RvsDose_T7777.pdf");
 
+  c->Clear();
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  frame->GetXaxis()->SetNdivisions(505);
+  frame->GetXaxis()->SetTickLength(0);
+  frame->GetXaxis()->SetTitle("irradiation [MGy]");
+  frame->GetYaxis()->SetTitle("thermal impedance [K cm^2/W]");
   grT557_1->Draw("P");
   grT557_2->Draw("P");
+  TLatex * latex = new TLatex(-0.25, 3.60, "T557");
+  latex->Draw();
+  c->Print("RvsDose_T557.pdf");
 
-  return;
+  c->Clear();
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  frame->GetXaxis()->SetNdivisions(505);
+  frame->GetXaxis()->SetTickLength(0);
+  frame->GetXaxis()->SetTitle("irradiation [MGy]");
+  frame->GetYaxis()->SetTitle("thermal impedance [K cm^2/W]");
+  grMPC315_1->Draw("P");
+  grMPC315_2->Draw("P");
+  grT725_1->Draw("P");
+  grT725_2->Draw("P");
+  grT777_1->Draw("P");
+  grT777_2->Draw("P");
+  grT557_1->Draw("P");
+  grT557_2->Draw("P");
+  TLegend * legend = new TLegend(0.15, 0.65, 0.3, 0.875);
+  legend->AddEntry(grMPC315_1, "MPC315", "F");
+  legend->AddEntry(grT725_1, "T725", "F");
+  legend->AddEntry(grT777_1, "T777", "F");
+  legend->AddEntry(grT557_1, "T557", "F");
+  legend->Draw();
+  c->Print("RvsDose.pdf");
 
   int specMarkerStyle = 4;
   float specMarkerSize = 1.2;
@@ -375,5 +430,5 @@ void plot()
   legend->AddEntry(grMPC315_10, "measured (0 psi)", "P");
   legend->Draw();
   
-  c->Print("TIM_0MGy_Comparison.pdf");
+  c->Print("TIM_Comparison.pdf");
 }
