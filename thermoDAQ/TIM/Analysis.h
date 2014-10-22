@@ -129,7 +129,7 @@ public :
   TBranch        *b_voltage2;   //!
   TBranch        *b_current2;   //!
   
-  Analysis(TTree * /*tree*/ =0, double errorPos = 0.5, double errorT = 0.01)
+  Analysis(TTree * /*tree*/ =0, double errorPos = 0.25, double errorT = 0.01)
     : fChain(0), ErrorPos(errorPos), ErrorT(errorT) { }
   virtual ~Analysis() { }
   virtual Int_t   Version() const { return 2; }
