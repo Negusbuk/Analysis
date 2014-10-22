@@ -265,6 +265,8 @@ void Analysis::Terminate()
   grTop->SetMarkerStyle(21);
   TGraphErrors * grBottom = new TGraphErrors();
   grBottom->SetMarkerStyle(21);
+  TGraphErrors * grCombineds = new TGraphErrors();
+  grCombineds->SetMarkerStyle(21);
   TGraphErrors * grCombined = new TGraphErrors();
   grCombined->SetMarkerStyle(21);
   
@@ -272,6 +274,7 @@ void Analysis::Terminate()
   for (int i=1;i<=4;++i) {
     if (fitTop_&bit) {
       pushPoint(grTop, positionTop[i], dataTop[i], ErrorPos, ErrorT);
+      pushPoint(grCombineds, positionTop[i], dataTop[i], ErrorPos, ErrorT);
       pushPoint(grCombined, positionTop[i], dataTop[i], ErrorPos, ErrorT);
     }
     bit <<= 1;
@@ -280,6 +283,7 @@ void Analysis::Terminate()
   for (int i=1;i<=4;++i) {
     if (fitBottom_&bit) {
       pushPoint(grBottom, positionBottom[i], dataBottom[i], ErrorPos, ErrorT);
+      pushPoint(grCombineds, positionBottom[i], dataBottom[i], ErrorPos, ErrorT);
       pushPoint(grCombined, positionBottom[i], dataBottom[i], ErrorPos, ErrorT);
     }
     bit <<= 1;
@@ -316,9 +320,11 @@ void Analysis::Terminate()
   fitBottom->Draw("same");
   std::cout << fitBottom->GetParameter(1) << std::endl;
   
-  TF1 * fitCombined = new TF1("fitCombined", myfunction1, 0.0, positionTop[4]+8.0, 4);
-  //TF1 * fitCombined = new TF1("fitCombined", myfunction2, 0.0, positionTop[4]+8.0, 5);
+  TF1 * fitCombineds = new TF1("fitCombineds", myfunction1, 0.0, positionTop[4]+8.0, 4);
+  TF1 * fitCombined = new TF1("fitCombined", myfunction2, 0.0, positionTop[4]+8.0, 5);
+  fitCombineds->FixParameter(3, positionBottomFace);
   fitCombined->FixParameter(3, positionBottomFace);
+  grCombineds->Fit(fitCombineds, "NR");
   grCombined->Fit(fitCombined, "NR");
   
   fitCombined->Draw("same");
@@ -349,7 +355,7 @@ void Analysis::Terminate()
   tex = new TLatex(positionBottomFace+1, dataBottom[1],
                    Form("#DeltaT_{c} = %.3f K (%.3f K/m)",
                         fitCombined->GetParameter(2),
-                        1000.*fitCombined->GetParameter(1)));
+                        1000.*fitCombineds->GetParameter(1)));
   tex->SetTextAlign(13);
   tex->Draw("same");
 
