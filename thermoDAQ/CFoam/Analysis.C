@@ -376,5 +376,13 @@ void Analysis::Terminate()
   tex->SetTextAlign(11);
   tex->Draw("same");
 
-  c->Print(Form("Analysis_%02d.png", calidx_));
+  c->Print("Analysis.png");
+  
+  std::ofstream ofile("fitresults.txt");
+  ofile << 1000.*fitTop->GetParameter(1) << std::endl;
+  ofile << 1000.*fitCombineds->GetParameter(1) << std::endl;
+  ofile << 1000.*fitBottom->GetParameter(1) << std::endl;
+  ofile << fitCombined->GetParameter(2) << std::endl;
+  ofile << fitCombined->GetParError(2) << std::endl;
+  ofile.close();
 }
