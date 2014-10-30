@@ -7,69 +7,71 @@ struct Measurement {
 };
 
 Measurement MPC315[] = {
-  {  0.0, -0.025, 1, 0.274, 0.190 },
-  {  0.0, +0.025, 1, 0.415, 0.201 },
-  {  1.0, -0.025, 1, 0.590, 0.208 },
-  {  1.0,  0.000, 1, 0.513, 0.203 },
-  {  1.0, +0.025, 1, 0.409, 0.250 },
-  {  1.0, +0.013, 2, 0.517, 0.208 },
-  {  2.0, -0.025, 1, 0.844, 0.223 },
-  {  2.0, +0.025, 2, 0.676, 0.216 },
-  {  3.0, -0.025, 1, 0.555, 0.257 },
-  {  3.0, +0.025, 2, 0.758, 0.268 },
-  {  0.0,  0.000, 0, 0.306, 0.195 },
+  { +0.0, -0.0350,  1, 0.274, 0.190 },
+  { +0.0, +0.0350,  1, 0.415, 0.201 },
+  { +1.0, -0.0250,  1, 0.590, 0.208 },
+  { +1.0, +0.0000,  1, 0.513, 0.203 },
+  { +1.0, +0.0250,  1, 0.409, 0.250 },
+  { +1.0, +0.0125,  2, 0.517, 0.208 },
+  { +2.0, -0.0250,  1, 0.844, 0.223 },
+  { +2.0, +0.0250,  2, 0.676, 0.216 },
+  { +3.0, -0.0250,  1, 0.555, 0.257 },
+  { +3.0, +0.0250,  2, 0.758, 0.268 },
+  { +0.0, +0.0000, 11, 0.306, 0.195 },
   { -1.0,  0, 0, 0, 0 }
 };
 
 Measurement T725[] = {
-  {  0.0, -0.025, 1, 1.718, 0.226 },
-  {  0.0, +0.025, 2, 1.648, 0.178 },
-  {  1.0, +0.025, 1, 2.041, 0.229 },
-  {  1.0, -0.025, 1, 2.071, 0.178 },
-  {  1.0, +0.025, 2, 3.387, 0.190 },
-  {  1.0,  0.000, 2, 3.324, 0.190 },
-  {  1.0, -0.025, 2, 3.212, 0.189 },
-  {  2.0, +0.025, 1, 2.496, 0.232 },
-  {  2.0, -0.025, 1, 2.617, 0.185 },
-  {  2.0, -0.025, 2, 2.821, 0.186 },
-  {  2.0, +0.025, 2, 2.612, 0.185 },
-  {  3.0, -0.000, 1, 2.212, 0.230 },
-  {  3.0, -0.025, 2, 2.434, 0.184 },
-  {  3.0, +0.025, 2, 2.326, 0.183 },
-  {  0.0,  0.000, 0, 0.560, 0.217 },
+  { +0.0, -0.0250,  1, 1.811, 0.330 },
+  { +0.0, +0.0250,  2, 1.695, 0.273 },
+  { +1.0, -0.0250,  1, 2.120, 0.348 },
+  { +1.0, +0.0250,  1, 2.174, 0.300 },
+  { +1.0, -0.0250,  2, 3.444, 0.373 },
+  { +1.0, +0.0000,  2, 3.218, 0.360 },
+  { +1.0, +0.0250,  2, 3.365, 0.368 },
+  { +2.0, -0.0250,  1, 2.579, 0.375 },
+  { +2.0, +0.0250,  1, 2.657, 0.328 },
+  { +2.0, -0.0250,  2, 2.937, 0.343 },
+  { +2.0, +0.0250,  2, 2.667, 0.328 },
+  { +3.0, -0.0250,  1, 2.299, 0.358 },
+  { +3.0, +0.0000,  2, 2.526, 0.320 },
+  { +3.0, +0.0250,  2, 2.401, 0.313 },
+  { +0.0, +0.0000, 11, 0.552, 0.258 },
   { -1.0,  0, 0, 0, 0 }
 };
 
 Measurement T777[] = {
-  {  0.0, -0.025, 1, 1.892, 0.228 },
-  {  0.0, +0.025, 2, 1.863, 0.180 },
-  {  1.0, -0.025, 1, 2.534, 0.233 },
-  {  1.0, +0.025, 1, 2.633, 0.185 },
-  {  1.0, +0.025, 2, 2.859, 0.187 },
-  {  2.0, -0.025, 1, 2.789, 0.235 },
-  {  2.0, +0.025, 2, 3.098, 0.188 },
-  {  3.0, -0.025, 1, 2.709, 0.234 },
-  {  3.0, +0.025, 2, 2.973, 0.187 },
-  {  0.0,  0.000, 0, 0.673, 0.172 },
-  {  0.0, -0.125, 0, 0.771, 0.173 },
+  { +0.0, -0.0250,  1, 1.928, 0.337 },
+  { +0.0, +0.0250,  2, 1.889, 0.285 },
+  { +1.0, -0.0250,  1, 2.697, 0.382 },
+  { +1.0, +0.0250,  1, 2.669, 0.329 },
+  { +1.0, +0.0000,  2, 2.921, 0.343 },
+  { +2.0, -0.0250,  1, 2.875, 0.392 },
+  { +2.0, +0.0250,  2, 3.159, 0.356 },
+  { +3.0, -0.0250,  1, 2.879, 0.392 },
+  { +3.0, +0.0250,  2, 3.013, 0.348 },
+  { +0.0, +0.0000, 11, 0.731, 0.219 },
+  { +0.0, -0.1250, 11, 0.796, 0.223 },
+  { +0.0, +0.0000, 12, 0.151, 0.187 },
   { -1.0,  0, 0, 0, 0 }
 };
 
 Measurement T557[] = {
-  {  0.0, -0.025, 1, 1.121, 0.221 },
-  {  0.0, +0.025, 2, 1.232, 0.176 },
-  {  1.0, -0.025, 1, 3.581, 0.191 },
-  {  1.0, +0.025, 1, 3.545, 0.191 },
-  {  1.0, -0.025, 2, 2.680, 0.185 },
-  {  1.0, +0.025, 2, 2.633, 0.185 },
-  {  2.0, -0.025, 1, 3.138, 0.238 },
-  {  2.0, +0.025, 1, 2.910, 0.187 },
-  {  2.0, -0.025, 2, 2.592, 0.185 },
-  {  2.0, +0.025, 2, 2.492, 0.184 },
-  {  3.0, -0.025, 1, 2.803, 0.186 },
-  {  3.0, +0.025, 2, 3.085, 0.188 },
-  {  0.0,  0.000, 0, 0.238, 0.214 },
-  {  0.0, -0.125, 0, 0.246, 0.169 },
+  { +0.0, -0.0250,  1, 1.466, 0.315 },
+  { +0.0, +0.0250,  2, 1.303, 0.251 },
+  { +1.0, -0.0250,  1, 3.638, 0.406 },
+  { +1.0, +0.0250,  1, 3.590, 0.381 },
+  { +1.0, -0.0250,  2, 2.747, 0.333 },
+  { +1.0, +0.0250,  2, 2.673, 0.329 },
+  { +2.0, -0.0250,  1, 3.165, 0.409 },
+  { +2.0, +0.0250,  1, 2.954, 0.344 },
+  { +2.0, -0.0250,  2, 2.683, 0.329 },
+  { +2.0, +0.0250,  2, 2.509, 0.320 },
+  { +3.0, -0.0250,  1, 2.640, 0.378 },
+  { +3.0, +0.0250,  1, 2.878, 0.340 },
+  { +3.0, +0.0000,  2, 3.150, 0.356 },
+  { +0.0, +0.0000, 11, 0.278, 0.242 },
+  { +0.0, -0.1250, 11, 0.247, 0.192 },
   { -1.0,  0, 0, 0, 0 }
 };
 
@@ -88,12 +90,12 @@ void plot()
   float sample2markersize = 1.0;
   int i;
   
-  TGraphErrors * grMPC315_0 = new TGraphErrors();
-  int nMPC315_0 = 0;
-  grMPC315_0->SetMarkerSize(sample0markersize);
-  grMPC315_0->SetMarkerStyle(sample0marker);
-  grMPC315_0->SetMarkerColor(MPC315color);
-  grMPC315_0->SetLineColor(MPC315color);
+  TGraphErrors * grMPC315_11 = new TGraphErrors();
+  int nMPC315_11 = 0;
+  grMPC315_11->SetMarkerSize(sample0markersize);
+  grMPC315_11->SetMarkerStyle(sample0marker);
+  grMPC315_11->SetMarkerColor(MPC315color);
+  grMPC315_11->SetLineColor(MPC315color);
   TGraphErrors * grMPC315_1 = new TGraphErrors();
   int nMPC315_1 = 0;
   grMPC315_1->SetMarkerSize(sample1markersize);
@@ -116,10 +118,10 @@ void plot()
   
   i = 0;
   while (MPC315[i].irradiation!=-1.0) {
-    if (MPC315[i].sample==0) {
-      grMPC315_0->SetPoint(nMPC315_0, MPC315[i].impedance, -0.1+MPC315[i].delta);
-      grMPC315_0->SetPointError(nMPC315_0, MPC315[i].error, 0.0);
-      nMPC315_0++;
+    if (MPC315[i].sample==11) {
+      grMPC315_11->SetPoint(nMPC315_11, MPC315[i].impedance, -0.1+MPC315[i].delta);
+      grMPC315_11->SetPointError(nMPC315_11, MPC315[i].error, 0.0);
+      nMPC315_11++;
     }
     if (MPC315[i].sample==1) {
       grMPC315_1->SetPoint(nMPC315_1, MPC315[i].irradiation+MPC315[i].delta, MPC315[i].impedance);
@@ -139,12 +141,12 @@ void plot()
     i++;
   }
 
-  TGraphErrors * grT725_0 = new TGraphErrors();
-  int nT725_0 = 0;
-  grT725_0->SetMarkerSize(sample0markersize);
-  grT725_0->SetMarkerStyle(sample0marker);
-  grT725_0->SetMarkerColor(T725color);
-  grT725_0->SetLineColor(T725color);
+  TGraphErrors * grT725_11 = new TGraphErrors();
+  int nT725_11 = 0;
+  grT725_11->SetMarkerSize(sample0markersize);
+  grT725_11->SetMarkerStyle(sample0marker);
+  grT725_11->SetMarkerColor(T725color);
+  grT725_11->SetLineColor(T725color);
   TGraphErrors * grT725_1 = new TGraphErrors();
   int nT725_1 = 0;
   grT725_1->SetMarkerSize(sample1markersize);
@@ -167,10 +169,10 @@ void plot()
   
   i = 0;
   while (T725[i].irradiation!=-1.0) {
-    if (T725[i].sample==0) {
-      grT725_0->SetPoint(nT725_0, T725[i].impedance, 1.0-0.1+T725[i].delta);
-      grT725_0->SetPointError(nT725_0, T725[i].error, 0.0);
-      nT725_0++;
+    if (T725[i].sample==11) {
+      grT725_11->SetPoint(nT725_11, T725[i].impedance, 1.0-0.1+T725[i].delta);
+      grT725_11->SetPointError(nT725_11, T725[i].error, 0.0);
+      nT725_11++;
     }
     if (T725[i].sample==1) {
       grT725_1->SetPoint(nT725_1, T725[i].irradiation+T725[i].delta, T725[i].impedance);
@@ -190,12 +192,18 @@ void plot()
     i++;
   }
 
-  TGraphErrors * grT777_0 = new TGraphErrors();
-  int nT777_0 = 0;
-  grT777_0->SetMarkerSize(sample0markersize);
-  grT777_0->SetMarkerStyle(sample0marker);
-  grT777_0->SetMarkerColor(T777color);
-  grT777_0->SetLineColor(T777color);
+  TGraphErrors * grT777_11 = new TGraphErrors();
+  int nT777_11 = 0;
+  grT777_11->SetMarkerSize(sample0markersize);
+  grT777_11->SetMarkerStyle(sample0marker);
+  grT777_11->SetMarkerColor(T777color);
+  grT777_11->SetLineColor(T777color);
+  TGraphErrors * grT777_12 = new TGraphErrors();
+  int nT777_12 = 0;
+  grT777_12->SetMarkerSize(sample0markersize);
+  grT777_12->SetMarkerStyle(sample0marker);
+  grT777_12->SetMarkerColor(T777color+2);
+  grT777_12->SetLineColor(T777color+2);
   TGraphErrors * grT777_1 = new TGraphErrors();
   int nT777_1 = 0;
   grT777_1->SetMarkerSize(sample1markersize);
@@ -218,10 +226,15 @@ void plot()
   
   i = 0;
   while (T777[i].irradiation!=-1.0) {
-    if (T777[i].sample==0) {
-      grT777_0->SetPoint(nT777_0, T777[i].impedance, 2.0-0.1+T777[i].delta);
-      grT777_0->SetPointError(nT777_0, T777[i].error, 0.0);
-      nT777_0++;
+    if (T777[i].sample==11) {
+      grT777_11->SetPoint(nT777_11, T777[i].impedance, 2.0-0.1+T777[i].delta);
+      grT777_11->SetPointError(nT777_11, T777[i].error, 0.0);
+      nT777_11++;
+    }
+    if (T777[i].sample==12) {
+      grT777_12->SetPoint(nT777_12, T777[i].impedance, 2.0-0.1+T777[i].delta);
+      grT777_12->SetPointError(nT777_12, T777[i].error, 0.0);
+      nT777_12++;
     }
     if (T777[i].sample==1) {
       grT777_1->SetPoint(nT777_1, T777[i].irradiation+T777[i].delta, T777[i].impedance);
@@ -241,12 +254,12 @@ void plot()
     i++;
   }
   
-  TGraphErrors * grT557_0 = new TGraphErrors();
-  int nT557_0 = 0;
-  grT557_0->SetMarkerSize(sample0markersize);
-  grT557_0->SetMarkerStyle(sample0marker);
-  grT557_0->SetMarkerColor(T557color);
-  grT557_0->SetLineColor(T557color);
+  TGraphErrors * grT557_11 = new TGraphErrors();
+  int nT557_11 = 0;
+  grT557_11->SetMarkerSize(sample0markersize);
+  grT557_11->SetMarkerStyle(sample0marker);
+  grT557_11->SetMarkerColor(T557color);
+  grT557_11->SetLineColor(T557color);
   TGraphErrors * grT557_1 = new TGraphErrors();
   int nT557_1 = 0;
   grT557_1->SetMarkerSize(sample1markersize);
@@ -269,10 +282,10 @@ void plot()
   
   i = 0;
   while (T557[i].irradiation!=-1.0) {
-    if (T557[i].sample==0) {
-      grT557_0->SetPoint(nT557_0, T557[i].impedance, 3.0-0.1+T557[i].delta);
-      grT557_0->SetPointError(nT557_0, T557[i].error, 0.0);
-      nT557_0++;
+    if (T557[i].sample==11) {
+      grT557_11->SetPoint(nT557_11, T557[i].impedance, 3.0-0.1+T557[i].delta);
+      grT557_11->SetPointError(nT557_11, T557[i].error, 0.0);
+      nT557_11++;
     }
     if (T557[i].sample==1) {
       grT557_1->SetPoint(nT557_1, T557[i].irradiation+T557[i].delta, T557[i].impedance);
@@ -292,12 +305,14 @@ void plot()
     i++;
   }
 
+  double Rmax = 4.25;
+  
   TCanvas * c= new TCanvas("c", "c", 700, 500);
   c->SetGridx(false);
   c->SetGridy(true);
 
   c->Clear();
-  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, Rmax);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
@@ -309,7 +324,7 @@ void plot()
   c->Print("RvsDose_MPC325.pdf");
 
   c->Clear();
-  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, Rmax);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
@@ -321,7 +336,7 @@ void plot()
   c->Print("RvsDose_T725.pdf");
 
   c->Clear();
-  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, Rmax);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
@@ -333,7 +348,7 @@ void plot()
   c->Print("RvsDose_T7777.pdf");
 
   c->Clear();
-  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, Rmax);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
@@ -345,7 +360,7 @@ void plot()
   c->Print("RvsDose_T557.pdf");
 
   c->Clear();
-  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, 4.0);
+  TH1F * frame = c->DrawFrame(-0.5, 0.0, 3.5, Rmax);
   frame->GetXaxis()->SetNdivisions(505);
   frame->GetXaxis()->SetTickLength(0);
   frame->GetXaxis()->SetTitle("irradiation [MGy]");
@@ -358,6 +373,7 @@ void plot()
   grT777_2->Draw("P");
   grT557_1->Draw("P");
   grT557_2->Draw("P");
+  c->Print("RvsDoseNoLegend.pdf");
   TLegend * legend = new TLegend(0.15, 0.65, 0.3, 0.875);
   legend->AddEntry(grMPC315_1, "MPC315", "F");
   legend->AddEntry(grT725_1, "T725", "F");
@@ -366,15 +382,13 @@ void plot()
   legend->Draw();
   c->Print("RvsDose.pdf");
 
-  return;
-
   int specMarkerStyle = 4;
   float specMarkerSize = 1.2;
   TGraph * grMPC315specs = new TGraph();
   grMPC315specs->SetMarkerSize(specMarkerSize);
   grMPC315specs->SetMarkerStyle(specMarkerStyle);
   grMPC315specs->SetMarkerColor(MPC315color);
-  grMPC315specs->SetPoint(0, 0.208, 0);
+  grMPC315specs->SetPoint(0, 0.208, 0.25);
   TGraph * grT725specs = new TGraph();
   grT725specs->SetMarkerStyle(specMarkerStyle);
   grT725specs->SetMarkerSize(specMarkerSize);
@@ -384,7 +398,7 @@ void plot()
   grT777specs->SetMarkerStyle(specMarkerStyle);
   grT777specs->SetMarkerSize(specMarkerSize);
   grT777specs->SetMarkerColor(T777color);
-  grT777specs->SetPoint(0, 0.130, 2);
+  grT777specs->SetPoint(0, 0.130, 2.1);
   TGraph * grT557specs = new TGraph();
   grT557specs->SetMarkerStyle(specMarkerStyle);
   grT557specs->SetMarkerSize(specMarkerSize);
@@ -410,10 +424,11 @@ void plot()
   grT777specs->Draw("P");
   grT557specs->Draw("P");
 
-  grMPC315_0->Draw("P");
-  grT725_0->Draw("P");
-  grT777_0->Draw("P");
-  grT557_0->Draw("P");
+  grMPC315_11->Draw("P");
+  grT725_11->Draw("P");
+  grT777_11->Draw("P");
+  grT777_12->Draw("P");
+  grT557_11->Draw("P");
 
   grMPC315_10->Draw("P");
   grT725_10->Draw("P");
@@ -429,7 +444,7 @@ void plot()
 
   TLegend * legend = new TLegend(0.5, 0.15, 0.875, 0.275);
   legend->AddEntry(grMPC315specs, "specs", "P");
-  legend->AddEntry(grMPC315_0, "measured (10 psi)", "P");
+  legend->AddEntry(grMPC315_11, "measured (10 psi)", "P");
   legend->AddEntry(grMPC315_10, "measured (0 psi)", "P");
   legend->Draw();
   
