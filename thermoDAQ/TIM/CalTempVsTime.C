@@ -231,8 +231,8 @@ void CalTempVsTime::Terminate()
   
   TH1F* frame = c->DrawFrame(0, Tmin-0.2*(Tmax-Tmin),
                              maxUTime, Tmax+0.2*(Tmax-Tmin));
-  frame->GetXaxis()->SetTitle("Time [s]");
-  frame->GetYaxis()->SetTitle("Temperature [K]");
+  frame->GetXaxis()->SetTitle("time [s]");
+  frame->GetYaxis()->SetTitle("relative temperature [K]");
   
   grTTop[4]->Draw("L");
   grTTop[3]->Draw("L");
@@ -244,7 +244,9 @@ void CalTempVsTime::Terminate()
   grTBottom[3]->Draw("L");
   grTBottom[4]->Draw("L");
 
+  c->Print("CalTempVsTime.pdf");
+
   grDelta->Draw("L");
 
-  c->Print("CalTempVsTime.png");
+  c->Print("CalTempVsTimeDelta.pdf");
 }

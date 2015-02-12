@@ -430,11 +430,6 @@ void plot()
   grT777_12->Draw("P");
   grT557_11->Draw("P");
 
-  grMPC315_10->Draw("P");
-  grT725_10->Draw("P");
-  grT777_10->Draw("P");
-  grT557_10->Draw("P");
-
   TLine * line = new TLine(-0.1, 0.5, 2.4, 0.5);
   line->Draw();
   TLine * line = new TLine(-0.1, 1.5, 2.4, 1.5);
@@ -447,6 +442,13 @@ void plot()
   legend->AddEntry(grMPC315_11, "measured (10 psi)", "P");
   legend->AddEntry(grMPC315_10, "measured (0 psi)", "P");
   legend->Draw();
+  
+  c->Print("TIM_Comparison_Specs.pdf");
+
+  grMPC315_10->Draw("P");
+  grT725_10->Draw("P");
+  grT777_10->Draw("P");
+  grT557_10->Draw("P");
   
   c->Print("TIM_Comparison.pdf");
 }
