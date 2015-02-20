@@ -40,7 +40,7 @@ CalibrationSet::CalibrationSet()
 {
   minTime_ = 0;
   maxTime_ = 2147483647;
-  for (int i=0;i<8;++i) {
+  for (int i=0;i<5;++i) {
     cal_[i] = 0.;
   }
 }
@@ -50,7 +50,7 @@ void CalibrationSet::read(std::ifstream& ifile)
   ifile >> minTime_;
   ifile >> maxTime_;
   
-  for (int i=0;i<8;++i) { 
+  for (int i=0;i<5;++i) { 
     ifile >> cal_[i];
   }
   
@@ -89,13 +89,10 @@ void CalTempVsTime::Begin(TTree * /*tree*/)
   Tmin =  1000;
   Tmax = -1000; 
   
-  for (int i=1;i<=4;++i) {
-    grTTop[i] = new TGraph();
-    grTTop[i]->SetName(Form("top_%d", i));
-    grTTop[i]->SetTitle(Form("top_%d", i));
-    grTBottom[i] = new TGraph();
-    grTBottom[i]->SetName(Form("bottom_%d", i));
-    grTBottom[i]->SetTitle(Form("bottom_%d", i));
+  for (int i=1;i<=5;++i) {
+    grT[i] = new TGraph();
+    grT[i]->SetName(Form("T_%d", i));
+    grT[i]->SetTitle(Form("T_%d", i));
   }
   
   grDelta = new TGraph();
@@ -170,9 +167,6 @@ Bool_t CalTempVsTime::Process(Long64_t entry)
     temperature2 -= calset->getCal(2);
     temperature3 -= calset->getCal(3);
     temperature4 -= calset->getCal(4);
-    temperature5 -= calset->getCal(5);
-    temperature6 -= calset->getCal(6);
-    temperature7 -= calset->getCal(7);
   }
   
   checkTemperature(temperature0);
@@ -180,31 +174,20 @@ Bool_t CalTempVsTime::Process(Long64_t entry)
   checkTemperature(temperature2);
   checkTemperature(temperature3);
   checkTemperature(temperature4);
-  checkTemperature(temperature5);
-  checkTemperature(temperature6);
-  checkTemperature(temperature7);
 
-  TBottom1 = temperature0;
-  TBottom2 = temperature1;
-  TBottom3 = temperature2;
-  TBottom4 = temperature3;
-  
-  TTop1 = temperature4;
-  TTop2 = temperature5;
-  TTop3 = temperature6;
-  TTop4 = temperature7;
+  T1 = temperature0;
+  T2 = temperature1;
+  T3 = temperature2;
+  T4 = temperature3;
+  T5 = temperature4;
 
-  pushPoint(grTTop[1], uTime, TTop1);
-  pushPoint(grTTop[2], uTime, TTop2);
-  pushPoint(grTTop[3], uTime, TTop3);
-  pushPoint(grTTop[4], uTime, TTop4);
+  pushPoint(grT[1], uTime, T1);
+  pushPoint(grT[2], uTime, T2);
+  pushPoint(grT[3], uTime, T3);
+  pushPoint(grT[4], uTime, T4);
+  pushPoint(grT[5], uTime, T5);
 
-  pushPoint(grTBottom[1], uTime, TBottom1);
-  pushPoint(grTBottom[2], uTime, TBottom2);
-  pushPoint(grTBottom[3], uTime, TBottom3);
-  pushPoint(grTBottom[4], uTime, TBottom4);
-  
-  pushPoint(grDelta, uTime, TTop4 - TBottom4);
+  pushPoint(grDelta, uTime, T1 - T5);
 
   return kTRUE;
 }
@@ -231,22 +214,16 @@ void CalTempVsTime::Terminate()
   
   TH1F* frame = c->DrawFrame(0, Tmin-0.2*(Tmax-Tmin),
                              maxUTime, Tmax+0.2*(Tmax-Tmin));
-  frame->GetXaxis()->SetTitle("time [s]");
-  frame->GetYaxis()->SetTitle("relative temperature [K]");
+  frame->GetXaxis()->SetTitle("Time [s]");
+  frame->GetYaxis()->SetTitle("Temperature [K]");
   
-  grTTop[4]->Draw("L");
-  grTTop[3]->Draw("L");
-  grTTop[2]->Draw("L");
-  grTTop[1]->Draw("L");
-  
-  grTBottom[1]->Draw("L");
-  grTBottom[2]->Draw("L");
-  grTBottom[3]->Draw("L");
-  grTBottom[4]->Draw("L");
-
-  c->Print("CalTempVsTime.pdf");
-
+  grT[5]->Draw("L");
+  grT[4]->Draw("L");
+  grT[3]->Draw("L");
+  grT[2]->Draw("L");
+  grT[1]->Draw("L");
+ 
   grDelta->Draw("L");
 
-  c->Print("CalTempVsTimeDelta.pdf");
+  c->Print("CalTempVsTime.png");
 }
