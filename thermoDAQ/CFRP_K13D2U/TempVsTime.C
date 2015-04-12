@@ -52,8 +52,16 @@ void TempVsTime::pushPoint(TGraphErrors* gr, Double_t x, Double_t y, Double_t ex
 
 void TempVsTime::checkTemperature(Double_t temp)
 {
+  if (!checkTemperature2(temp)) return;
+
   if (temp<Tmin) Tmin = temp;
   if (temp>Tmax) Tmax = temp;
+}
+
+bool TempVsTime::checkTemperature2(Double_t temp)
+{
+  if (temp<-20 || temp>50) return false;
+  return true;
 }
 
 void TempVsTime::Begin(TTree * /*tree*/)
@@ -72,13 +80,20 @@ void TempVsTime::Begin(TTree * /*tree*/)
     grT[i]->SetName(Form("T_%d", i));
     grT[i]->SetTitle(Form("T_%d", i));
   }
+
+  grTtop = new TGraph();
+  grTtop->SetLineColor(2);
+  grTbottom = new TGraph();
+  grTbottom->SetLineColor(4);
+  grTambient = new TGraph();
+  grTambient->SetLineColor(8);
   
   grCurrent = new TGraph();
   grVoltage = new TGraph();
   grBath = new TGraph();
   
   nCalEntries = 0;
-  for (int i=0;i<5;++i) {
+  for (int i=0;i<8;++i) {
     cal[i] = 0;
   }
 
@@ -130,24 +145,37 @@ Bool_t TempVsTime::Process(Long64_t entry)
   temperature2 -= cal[2];
   temperature3 -= cal[3];
   temperature4 -= cal[4];
+  temperature5 -= cal[5];
+  temperature6 -= cal[6];
+  temperature7 -= cal[7];
 
   checkTemperature(temperature0);
   checkTemperature(temperature1);
   checkTemperature(temperature2);
   checkTemperature(temperature3);
   checkTemperature(temperature4);
+  checkTemperature(temperature5);
+  checkTemperature(temperature6);
+  checkTemperature(temperature7);
 
   T1 = temperature0;
   T2 = temperature1;
   T3 = temperature2;
   T4 = temperature3;
   T5 = temperature4;
+  Ttop = temperature5;
+  Tbottom = temperature6;
+  Tambient = temperature7;
+  
+  if (checkTemperature2(T1)) pushPoint(grT[1], uTime, T1);
+  if (checkTemperature2(T2)) pushPoint(grT[2], uTime, T2);
+  if (checkTemperature2(T3)) pushPoint(grT[3], uTime, T3);
+  if (checkTemperature2(T4)) pushPoint(grT[4], uTime, T4);
+  if (checkTemperature2(T5)) pushPoint(grT[5], uTime, T5);
 
-  pushPoint(grT[1], uTime, T1);
-  pushPoint(grT[2], uTime, T2);
-  pushPoint(grT[3], uTime, T3);
-  pushPoint(grT[4], uTime, T4);
-  pushPoint(grT[5], uTime, T5);
+  if (checkTemperature2(Ttop)) pushPoint(grTtop, uTime, Ttop);
+  if (checkTemperature2(Tbottom)) pushPoint(grTbottom, uTime, Tbottom);
+  if (checkTemperature2(Tambient)) pushPoint(grTambient, uTime, Tambient);
 
   pushPoint(grCurrent, uTime, current1);
   pushPoint(grVoltage, uTime, voltage1);
@@ -200,7 +228,7 @@ void TempVsTime::Terminate()
   
   c = new TCanvas("c3", "c3", 700, 500);
   frame = c->DrawFrame(0, 0.0,
-                       maxUTime, 20.0);
+                       maxUTime, 30.0);
   frame->GetXaxis()->SetTitle("Time [s]");
   frame->GetYaxis()->SetTitle("Bath [deg C]");
 
@@ -221,5 +249,9 @@ void TempVsTime::Terminate()
   grT[2]->Draw("L");
   grT[1]->Draw("L");
 
+  grTtop->Draw("L");
+  grTbottom->Draw("L");
+  grTambient->Draw("L");
+  
   c->Print("TempVsTime.png");
 }

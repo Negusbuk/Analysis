@@ -35,12 +35,23 @@
 #include <TLine.h>
 #include <TF1.h>
 #include <TLatex.h>
+#include <TMath.h>
+
+Double_t fitFunc(Double_t *x, Double_t *par)
+{
+  double xx =x[0];
+  double p0 = par[0];
+  double p1 = par[1];
+  double p2 = par[2];
+  
+  return p0 - TMath::Exp(-(xx-p2)/p1);
+}
 
 CalibrationSet::CalibrationSet()
 {
   minTime_ = 0;
   maxTime_ = 2147483647;
-  for (int i=0;i<5;++i) {
+  for (int i=0;i<8;++i) {
     cal_[i] = 0.;
   }
 }
@@ -50,7 +61,7 @@ void CalibrationSet::read(std::ifstream& ifile)
   ifile >> minTime_;
   ifile >> maxTime_;
   
-  for (int i=0;i<5;++i) { 
+  for (int i=0;i<8;++i) { 
     ifile >> cal_[i];
   }
   
@@ -95,6 +106,13 @@ void CalTempVsTime::Begin(TTree * /*tree*/)
     grT[i]->SetTitle(Form("T_%d", i));
   }
   
+  grTtop = new TGraph();
+  grTtop->SetLineColor(2);
+  grTbottom = new TGraph();
+  grTbottom->SetLineColor(4);
+  grTambient = new TGraph();
+  grTambient->SetLineColor(8);
+
   grDelta = new TGraph();
   grDelta->SetLineColor(2);
   grDelta->SetLineWidth(2);
@@ -109,6 +127,8 @@ void CalTempVsTime::Begin(TTree * /*tree*/)
     calset->read(ifile);
     calibrationSets_.Add(calset);
   }
+  
+  TF1* fit = new TF1("fitFunc", fitFunc, 0, 30000, 3);
 }
 
 void CalTempVsTime::SlaveBegin(TTree * /*tree*/)
@@ -162,11 +182,13 @@ Bool_t CalTempVsTime::Process(Long64_t entry)
   }
   
   if (calset!=0) {
-    temperature0 -= calset->getCal(0);
-    temperature1 -= calset->getCal(1);
-    temperature2 -= calset->getCal(2);
-    temperature3 -= calset->getCal(3);
-    temperature4 -= calset->getCal(4);
+    temperature0 -= calset->getCal(0) - calset->getCal(7);
+    temperature1 -= calset->getCal(1) - calset->getCal(7);
+    temperature2 -= calset->getCal(2) - calset->getCal(7);
+    temperature3 -= calset->getCal(3) - calset->getCal(7);
+    temperature4 -= calset->getCal(4) - calset->getCal(7);
+    temperature5 -= calset->getCal(5) - calset->getCal(7);
+    temperature6 -= calset->getCal(6) - calset->getCal(7);
   }
   
   checkTemperature(temperature0);
@@ -174,18 +196,28 @@ Bool_t CalTempVsTime::Process(Long64_t entry)
   checkTemperature(temperature2);
   checkTemperature(temperature3);
   checkTemperature(temperature4);
+  checkTemperature(temperature5);
+  checkTemperature(temperature6);
+  checkTemperature(temperature7);
 
   T1 = temperature0;
   T2 = temperature1;
   T3 = temperature2;
   T4 = temperature3;
   T5 = temperature4;
+  Ttop = temperature5;
+  Tbottom = temperature6;
+  Tambient = temperature7;
 
   pushPoint(grT[1], uTime, T1);
   pushPoint(grT[2], uTime, T2);
   pushPoint(grT[3], uTime, T3);
   pushPoint(grT[4], uTime, T4);
   pushPoint(grT[5], uTime, T5);
+
+  pushPoint(grTtop, uTime, Ttop);
+  pushPoint(grTbottom, uTime, Tbottom);
+  pushPoint(grTambient, uTime, Tambient);
 
   pushPoint(grDelta, uTime, T1 - T5);
 
@@ -222,8 +254,12 @@ void CalTempVsTime::Terminate()
   grT[3]->Draw("L");
   grT[2]->Draw("L");
   grT[1]->Draw("L");
+
+  grTtop->Draw("L");
+  grTbottom->Draw("L");
+  grTambient->Draw("L");
  
-  grDelta->Draw("L");
+  //grDelta->Draw("L");
 
   c->Print("CalTempVsTime.png");
 }

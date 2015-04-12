@@ -33,7 +33,7 @@ public:
 protected:
   UInt_t minTime_;
   UInt_t maxTime_;
-  Float_t cal_[5];
+  Float_t cal_[8];
   
   ClassDef(CalibrationSet,0);
 };
@@ -154,9 +154,15 @@ public :
 
   Float_t Tmin, Tmax;  
   Float_t T1, T2, T3, T4, T5;
+  Float_t Ttop, Tbottom;
+  Float_t Tambient;
   
   TGraph* grT[6];
-  
+
+  TGraph* grTtop;
+  TGraph* grTbottom;
+  TGraph* grTambient;
+ 
   TGraph* grDelta;
 
   UInt_t minUTime;
