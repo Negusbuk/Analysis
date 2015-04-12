@@ -87,7 +87,7 @@ void CalibrationSet::read(std::ifstream& ifile)
   ifile >> minTime_;
   ifile >> maxTime_;
   
-  for (int i=0;i<5;++i) { 
+  for (int i=0;i<8;++i) { 
     ifile >> cal_[i];
   }
   
@@ -193,11 +193,13 @@ Bool_t Analysis::Process(Long64_t entry)
   uTime -= minUTime;
 
   if (calset_) {
-    temperature0 -= calset_->getCal(0);
-    temperature1 -= calset_->getCal(1);
-    temperature2 -= calset_->getCal(2);
-    temperature3 -= calset_->getCal(3);
-    temperature4 -= calset_->getCal(4);
+    temperature0 -= calset_->getCal(0) - calset_->getCal(7);
+    temperature1 -= calset_->getCal(1) - calset_->getCal(7);
+    temperature2 -= calset_->getCal(2) - calset_->getCal(7);
+    temperature3 -= calset_->getCal(3) - calset_->getCal(7);
+    temperature4 -= calset_->getCal(4) - calset_->getCal(7);
+    temperature5 -= calset_->getCal(5) - calset_->getCal(7);
+    temperature6 -= calset_->getCal(6) - calset_->getCal(7);
   }
   
   T1 = temperature0;
@@ -212,6 +214,10 @@ Bool_t Analysis::Process(Long64_t entry)
     data[3] += T3;
     data[4] += T4;
     data[5] += T5;
+    data[6] += temperature5; // top
+    data[7] += temperature6; // bottom
+    data[8] += temperature7; // ambient
+    bath += bathTemperature;
     nDataEntries++;
   }
 
@@ -232,9 +238,10 @@ void Analysis::Terminate()
   // a query. It always runs on the client, it can be used to present
   // the results graphically or save the results to file.
   
-  for (int i=1;i<=5;++i) {
+  for (int i=1;i<=8;++i) {
     data[i] /= nDataEntries;
   }
+  bath /= nDataEntries;
 
   TGraphErrors * grT = new TGraphErrors();
   grT->SetMarkerStyle(21);
@@ -260,7 +267,12 @@ void Analysis::Terminate()
   fit->SetLineColor(2);
   grT->Fit(fit, "NR");
   fit->Draw("same");
-  std::cout << fit->GetParameter(1) << std::endl;
+
+  std::cout << bath << ", "
+            << data[8] << ", "
+            << data[7] << ", "
+            << data[6] << ", "
+            << fit->GetParameter(1) << std::endl;
 
 /*
   tex = new TLatex(positionBottomFace+1, dataBottom[1],

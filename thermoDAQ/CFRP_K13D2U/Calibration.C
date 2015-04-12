@@ -40,7 +40,7 @@ CalibrationRange::CalibrationRange(UInt_t minTime, UInt_t maxTime)
   :minTime_(minTime),
    maxTime_(maxTime)
 {
-  for (int i=0;i<5;++i) {
+  for (int i=0;i<8;++i) {
     nCalEntries_[i] = 0;
     cal_[i] = 0.;
   }
@@ -61,7 +61,7 @@ void CalibrationRange::dump(std::ofstream& ofile, UInt_t minTime, UInt_t maxTime
   std::cout << "  // minTime = " << minTime_ << std::endl;
   std::cout << "  // maxTime = " << maxTime_ << std::endl;
 
-  for (int i=0;i<5;++i) { 
+  for (int i=0;i<8;++i) { 
     if (nCalEntries_[i]>0) {
       std::cout << "  cal[" << i << "] = " << cal_[i]/nCalEntries_[i] << ";" << std::endl;
       ofile << cal_[i]/nCalEntries_[i] << std::endl;
@@ -136,6 +136,9 @@ Bool_t Calibration::Process(Long64_t entry)
       range->addCalEntry(2, temperature2);
       range->addCalEntry(3, temperature3);
       range->addCalEntry(4, temperature4);
+      range->addCalEntry(5, temperature5);
+      range->addCalEntry(6, temperature6);
+      range->addCalEntry(7, temperature7);
     }
   }
   

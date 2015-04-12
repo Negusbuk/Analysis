@@ -133,16 +133,23 @@ public :
                  Double_t x, Double_t y,
                  Double_t ex, Double_t ey);
   void checkTemperature(Double_t temp);
+  bool checkTemperature2(Double_t temp);
   
   UInt_t minUTime;
   UInt_t maxUTime;
   int nCalEntries;
-  Float_t cal[5];
+  Float_t cal[8];
 
   Float_t Tmin, Tmax;  
   Float_t T1, T2, T3, T4, T5;
+  Float_t Ttop, Tbottom;
+  Float_t Tambient;
   
   TGraph* grT[6];
+
+  TGraph* grTtop;
+  TGraph* grTbottom;
+  TGraph* grTambient;
   
   Float_t lastCurrent;
   TGraph* grCurrent;

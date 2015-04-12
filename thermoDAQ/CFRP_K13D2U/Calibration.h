@@ -36,8 +36,8 @@ public:
 protected:
   UInt_t minTime_;
   UInt_t maxTime_;
-  int nCalEntries_[5];
-  Float_t cal_[5];
+  int nCalEntries_[8];
+  Float_t cal_[8];
   
   ClassDef(CalibrationRange,0);
 };

@@ -33,7 +33,7 @@ public:
 protected:
   UInt_t minTime_;
   UInt_t maxTime_;
-  Float_t cal_[5];
+  Float_t cal_[8];
   
   ClassDef(CalibrationSet,0);
 };
@@ -159,7 +159,8 @@ public :
   UInt_t minUTime;
   
   int nDataEntries;
-  Double_t data[6];
+  Double_t data[9];
+  Double_t bath;
   
   Float_t T1, T2, T3, T4, T5;
   
