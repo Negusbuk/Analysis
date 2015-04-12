@@ -1,3 +1,13 @@
 *.so
 *.d
 
+.project
+.cproject
+
+thermoDAQ/CFRP_K13D2U/calibration.txt
+thermoDAQ/CFRP_K13D2U/position.txt
+
+thermoDAQ/CFoam/fitresults.txt
+
+thermoDAQ/TIM/calibration.txt
+thermoDAQ/TIM/fitresults.txt
