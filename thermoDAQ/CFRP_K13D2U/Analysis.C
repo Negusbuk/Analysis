@@ -263,9 +263,9 @@ void Analysis::Terminate()
   
   grT->Draw("P");
   
-  TF1 * fit = new TF1("fit", "pol1", position[5]-5.0, position[1]+5.0);
+  TF1 * fit = new TF1("fit", "pol1");
   fit->SetLineColor(2);
-  grT->Fit(fit, "NR");
+  grT->Fit(fit);
   fit->Draw("same");
 
   std::cout << bath << ", "
