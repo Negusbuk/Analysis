@@ -13,13 +13,26 @@ function _k(A, l, dT, P)
     return k;
 end
 
-I = 0.1   # A
-R = 5.0   # Ohm
-P = I*I*R # W
+I = 0.099  # A
+R = 10.0   # Ohm
+P = I*I*R  # W
 
-A = 10e-3 * 275e-6; # m^2
-slope = 0.08627e3;  # K/m
+A = 9.80122e-3 * 275e-6; # m^2
 
-k = _k(A, 1.0, slope, P);
+slope_m = 0.1042990e3; # K/m
+slope_0 = 0.0957354e3; # K/m
+slope_p = 0.0871722e3; # K/m
 
-println(k)
+An = 2.*14.2e-6; # m^2
+kn = 0.26;       # W/m/K
+Pn_m = _P(An, 1.0, slope_m, kn)
+Pn_0 = _P(An, 1.0, slope_0, kn)
+Pn_p = _P(An, 1.0, slope_p, kn)
+
+println(Pn_m)
+println(Pn_0)
+println(Pn_p)
+
+println(_k(A, 1.0, slope_m, P - Pn_m))
+println(_k(A, 1.0, slope_0, P - Pn_0))
+println(_k(A, 1.0, slope_p, P - Pn_p))
