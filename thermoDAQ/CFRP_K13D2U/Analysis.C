@@ -283,7 +283,7 @@ void Analysis::Terminate()
             << data[8] << ", "
             << data[7] << ", "
             << data[6] << ", "
-            << -1.0 * fit->GetParameter(1) << std::endl;
+            << 1.0 * fit->GetParameter(1) << std::endl;
 
 /*
   tex = new TLatex(positionBottomFace+1, dataBottom[1],
