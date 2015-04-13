@@ -267,8 +267,8 @@ void Analysis::Terminate()
   
   TCanvas *c = new TCanvas("c", "c", 700, 500);
    
-  TH1F* frame = c->DrawFrame(position[1]-5.0, data[5]-(data[4]-data[5])*5.0,
-                             position[5]+5.0, data[1]+(data[1]-data[2])*5.0);
+  TH1F* frame = c->DrawFrame(position[1]-5.0, data[1]-2.0,
+                             position[5]+5.0, data[5]+2.0);
   frame->GetXaxis()->SetTitle("Position [mm]");
   frame->GetYaxis()->SetTitle("Temperature [K]");
   
