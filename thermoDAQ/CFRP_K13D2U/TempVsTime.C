@@ -134,6 +134,7 @@ Bool_t TempVsTime::Process(Long64_t entry)
   if (firstEntry) {
     minUTime = uTime;
     lastCurrent = current1;
+    lastWorkingTemperature = workingTemperature;
     firstEntry = false;
   }
   
@@ -185,6 +186,10 @@ Bool_t TempVsTime::Process(Long64_t entry)
   lastCurrent = current1;
 
   pushPoint(grBath, uTime, bathTemperature);
+  if (workingTemperature!=lastWorkingTemperature) {
+    std::cout << "working temperature changed to " << workingTemperature << " degC @ " << uTime << std::endl;
+  }
+  lastWorkingTemperature = workingTemperature;
   
   return kTRUE;
 }

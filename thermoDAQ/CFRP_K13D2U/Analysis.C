@@ -72,6 +72,15 @@ Double_t myfunction2(Double_t *x, Double_t *par)
   
   return f;
 }
+
+Double_t myfunction3(Double_t *x, Double_t *par)
+{
+  double xx =x[0];
+  double p0 = par[0];
+  double p1 = par[1];
+
+  return p0 + xx * p1;
+}
  
 CalibrationSet::CalibrationSet()
 {
@@ -243,36 +252,38 @@ void Analysis::Terminate()
   }
   bath /= nDataEntries;
 
-  TGraphErrors * grT = new TGraphErrors();
+  //TGraphErrors * grT = new TGraphErrors();
+  TGraph * grT = new TGraph();
   grT->SetMarkerStyle(21);
   
   int bit = 1;
   for (int i=1;i<=5;++i) {
     if (fit_&bit) {
-      pushPoint(grT, position[i], data[i], ErrorPos, ErrorT);
+      //pushPoint(grT, position[i], data[i], 5*ErrorPos, 20*ErrorT);
+      pushPoint(grT, position[i], data[i]);
     }
     bit <<= 1;
   }
   
   TCanvas *c = new TCanvas("c", "c", 700, 500);
    
-  TH1F* frame = c->DrawFrame(0, data[5]-(data[4]-data[5])*5.0,
-                             position[1]+10.0, data[1]+(data[1]-data[2])*5.0);
+  TH1F* frame = c->DrawFrame(position[1]-5.0, data[1]-2.0,
+                             position[5]+5.0, data[5]+2.0);
   frame->GetXaxis()->SetTitle("Position [mm]");
   frame->GetYaxis()->SetTitle("Temperature [K]");
   
   grT->Draw("P");
   
-  TF1 * fit = new TF1("fit", "pol1");
+  TF1 * fit = new TF1("fit", myfunction3, position[1]-5.0, position[5]+5.0, 2);
   fit->SetLineColor(2);
-  grT->Fit(fit);
+  grT->Fit(fit, "NR");
   fit->Draw("same");
 
   std::cout << bath << ", "
             << data[8] << ", "
             << data[7] << ", "
             << data[6] << ", "
-            << fit->GetParameter(1) << std::endl;
+            << 1.0 * fit->GetParameter(1) << std::endl;
 
 /*
   tex = new TLatex(positionBottomFace+1, dataBottom[1],

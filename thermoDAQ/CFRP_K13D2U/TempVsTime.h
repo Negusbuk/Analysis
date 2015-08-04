@@ -152,6 +152,7 @@ public :
   TGraph* grTambient;
   
   Float_t lastCurrent;
+  Float_t lastWorkingTemperature;
   TGraph* grCurrent;
   TGraph* grVoltage;
   TGraph* grBath;
